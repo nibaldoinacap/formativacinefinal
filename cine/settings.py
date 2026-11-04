@@ -53,11 +53,16 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = []
+
 LANGUAGE_CODE = 'es-cl'
 TIME_ZONE = 'America/Santiago'
+
 USE_I18N = True
 USE_TZ = True
+
 STATIC_URL = 'static/'
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
