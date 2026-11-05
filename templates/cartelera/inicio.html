@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load cartelera_extras %}
+
+{% block title %}Cartelera | Cine Formativa{% endblock %}
+
+{% block content %}
+<h1>Cartelera</h1>
+
+<form class="filtros" method="get">
+    <input
+        type="search"
+        name="q"
+        value="{{ busqueda }}"
+        placeholder="Buscar por título"
+    >
+
+    <select name="genero">
+        <option value="">Todos los géneros</option>
+
+        {% for genero in generos %}
+            <option
+                value="{{ genero.id }}"
+                {% if genero_id == genero.id|stringformat:'s' %}
+                    selected
+                {% endif %}
+            >
+                {{ genero.nombre }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Buscar</button>
+</form>
+
+<section class="peliculas">
+    {% for pelicula in peliculas %}
+        <article class="tarjeta">
+            <a href="{% url 'cartelera:detalle' pelicula.pk %}">
+                <img
+                    src="{{ pelicula.afiche.url }}"
+                    alt="Afiche de {{ pelicula.titulo }}"
+                >
+            </a>
+
+            <div class="tarjeta-contenido">
+                <h2>
+                    <a href="{% url 'cartelera:detalle' pelicula.pk %}">
+                        {{ pelicula.titulo }}
+                    </a>
+                </h2>
+
+                <p>
+                    {{ pelicula.genero }}
+                    ·
+                    <span class="precio">
+                        {{ pelicula.precio|clp }}
+                    </span>
+                </p>
+            </div>
+        </article>
+    {% empty %}
+        <p>No hay películas que coincidan con la búsqueda.</p>
+    {% endfor %}
+</section>
+{% endblock %}

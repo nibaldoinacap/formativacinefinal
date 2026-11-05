@@ -1,0 +1,128 @@
+{% load cartelera_extras %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Cine Formativa{% endblock %}</title>
+    <style>
+        :root {
+            font-family: system-ui, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background: #172554;
+            color: white;
+            padding: 1rem 5%;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .filtros,
+        .tarjeta,
+        .detalle {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .filtros {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        input,
+        select,
+        button {
+            font: inherit;
+            padding: .55rem;
+        }
+
+        button {
+            cursor: pointer;
+            background: #172554;
+            color: white;
+            border: 0;
+            border-radius: 4px;
+        }
+
+        .peliculas {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(210px, 1fr)
+            );
+            gap: 1rem;
+        }
+
+        .tarjeta {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .tarjeta img,
+        .detalle img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .tarjeta img {
+            height: 300px;
+        }
+
+        .tarjeta-contenido {
+            padding: 1rem;
+        }
+
+        .detalle {
+            display: grid;
+            grid-template-columns: minmax(220px, 360px) 1fr;
+            gap: 2rem;
+        }
+
+        .detalle img {
+            max-height: 520px;
+        }
+
+        .precio {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #166534;
+        }
+
+        @media (max-width: 650px) {
+            .detalle {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{% url 'cartelera:inicio' %}">
+            <strong>Cine Formativa</strong>
+        </a>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

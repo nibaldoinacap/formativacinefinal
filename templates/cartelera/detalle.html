@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load cartelera_extras %}
+
+{% block title %}
+    {{ pelicula.titulo }} | Cine Formativa
+{% endblock %}
+
+{% block content %}
+<article class="detalle">
+    <img
+        src="{{ pelicula.afiche.url }}"
+        alt="Afiche de {{ pelicula.titulo }}"
+    >
+
+    <div>
+        <h1>{{ pelicula.titulo }}</h1>
+
+        <p>
+            <strong>Género:</strong>
+            {{ pelicula.genero }}
+        </p>
+
+        <p>
+            <strong>Duración:</strong>
+            {{ pelicula.duracion }} minutos
+        </p>
+
+        <p>
+            <strong>Estreno:</strong>
+            {{ pelicula.fecha_estreno|date:'d/m/Y' }}
+        </p>
+
+        <p>{{ pelicula.sinopsis }}</p>
+
+        <p class="precio">
+            Entrada: {{ pelicula.precio|clp }}
+        </p>
+    </div>
+</article>
+{% endblock %}
